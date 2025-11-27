@@ -3,6 +3,8 @@ package com.example.controller;
 import com.example.entity.Student;
 import com.example.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +17,11 @@ public class StudentController {
 
     private final StudentService studentService;
 
+    private final static Logger logger = LoggerFactory.getLogger(StudentController.class);
+
     @PostMapping(value = "/saveStudent")
     public ResponseEntity<String> saveStudent(@RequestBody Student student) {
+        logger.info(" Cursor enter into controller method inside ");
         if (studentService.saveStudent(student)) {
             return ResponseEntity.status(HttpStatus.CREATED).body("Successfully Student Saved..!");
         }
