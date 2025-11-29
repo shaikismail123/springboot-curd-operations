@@ -25,7 +25,7 @@ public class StudentController {
         if (studentService.saveStudent(student)) {
             return ResponseEntity.status(HttpStatus.CREATED).body("Successfully Student Saved..!");
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong..!");
     }
 
     @PutMapping(value="/updateStudent")
@@ -45,7 +45,7 @@ public class StudentController {
 
     @DeleteMapping(value="/deleteById/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.deleteStudentById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.deleteStudentById(id));
     }
 
 }
